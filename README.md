@@ -12,118 +12,87 @@ Example of use:
 ```cs
 using System;
 
-namespace SPACalculator
-static void Main()
+using SPACalculator;
+using SPACalculator.Enums;
+using SPACalculator.Models;
+using SPACalculator.Models.IntermediateModels;
+
+namespace SPATestConsole
 {
-    class Program
-	var enironment = new EnviromentModel
+	class Program
 	{
-        static void Main()
-		Longitude = -105.1786,
-		Latitude = 39.742476,
-		Elevation = 1830.14,
-		Pressure = 820,
-		Temperature = 11,
-		Slope = 30,
-		AzmRotation = -10,
-		AtmosRefract = 0.5667,
-	};
-	var time = new TimeModel
-	{
-            SPACalculator.SPAData spa = new SPACalculator.SPAData();
-		Year = 2003,
-		Month = 10,
-		Day = 17,
-		Hour = 12,
-		Minute = 30,
-		Second = 30,
-		Timezone = -7.0,
-	};
-	var timeDeltas = new TimeDeltasModel
-	{
-		DeltaUt1 = 0,
-		DeltaT = 67,
-	};
+		static void Main()
+		{
+			var enironment = new EnviromentModel
+			{
+				Longitude = -105.1786,
+				Latitude = 39.742476,
+				Elevation = 1830.14,
+				Pressure = 820,
+				Temperature = 11,
+				Slope = 30,
+				AzmRotation = -10,
+				AtmosRefract = 0.5667,
+			};
+			var time = new TimeModel
+			{
+				Year = 2003,
+				Month = 10,
+				Day = 17,
+				Hour = 12,
+				Minute = 30,
+				Second = 30,
+				Timezone = -7.0,
+			};
+			var timeDeltas = new TimeDeltasModel
+			{
+				DeltaUt1 = 0,
+				DeltaT = 67,
+			};
 
-            spa.Year = 2003;
-            spa.Month = 10;
-            spa.Day = 17;
-            spa.Hour = 12;
-            spa.Minute = 30;
-            spa.Second = 30;
-            spa.Timezone = -7.0;
-            spa.DeltaUt1 = 0;
-            spa.DeltaT = 67;
-            spa.Longitude = -105.1786;
-            spa.Latitude = 39.742476;
-            spa.Elevation = 1830.14;
-            spa.Pressure = 820;
-            spa.Temperature = 11;
-            spa.Slope = 30;
-            spa.AzmRotation = -10;
-            spa.AtmosRefract = 0.5667;
-            spa.Function = SPACalculator.CalculationMode.SPA_ALL;
-	var data = new DataModel
-	{
-		Enviroment = enironment,
-		Time = time,
-		TimeDeltas = timeDeltas,
-		MidOut = new IntermediateOutputModel(),
-		Output = new OutputModel(),
-		Mode = CalculationMode.All
-	};
+			var data = new DataModel
+			{
+				Enviroment = enironment,
+				Time = time,
+				TimeDeltas = timeDeltas,
+				MidOut = new IntermediateOutputModel(),
+				Output = new OutputModel(),
+				Mode = CalculationMode.All
+			};
 
-            var result = SPACalculator.SPACalculate(ref spa);
-	var result = SPACalculator.SPACalculator.SPACalculate(ref data);
+			var result = SPACalculator.SPACalculator.SPACalculate(ref data);
 
-	// Check for SPA errors
-	if (result == 0)
-	{
-                Console.Write("Julian Day:    {0}\n", spa.Jd);
-                Console.Write("L:             {0} degrees\n", spa.L);
-                Console.Write("B:             {0} degrees\n", spa.B);
-                Console.Write("R:             {0} AU\n", spa.R);
-                Console.Write("H:             {0} degrees\n", spa.H);
-                Console.Write("Delta Psi:     {0} degrees\n", spa.DelPsi);
-                Console.Write("Delta Epsilon: {0} degrees\n", spa.DelEpsilon);
-                Console.Write("Epsilon:       {0} degrees\n", spa.Epsilon);
-                Console.Write("Zenith:        {0} degrees\n", spa.Zenith);
-                Console.Write("Azimuth:       {0} degrees\n", spa.Azimuth);
-                Console.Write("Incidence:     {0} degrees\n", spa.Incidence);
-		Console.Write("Julian Day:    {0}\n", data.MidOut.JulianTime.JDay);
-		Console.Write("HeliocentericLongitude:             {0} degrees\n", data.MidOut.EarthMidOut.HeliocentericLongitude);
-		Console.Write("HeliocentericLatitude:             {0} degrees\n", data.MidOut.EarthMidOut.HeliocentericLatitude);
-		Console.Write("RadiusVector:             {0} AU\n", data.MidOut.EarthMidOut.RadiusVector);
-		Console.Write("H:             {0} degrees\n", data.MidOut.H);
-		Console.Write("Delta Psi:     {0} degrees\n", data.MidOut.DelPsi);
-		Console.Write("Delta Epsilon: {0} degrees\n", data.MidOut.DelEpsilon);
-		Console.Write("Epsilon:       {0} degrees\n", data.MidOut.Epsilon);
-		Console.Write("Zenith:        {0} degrees\n", data.Output.Zenith);
-		Console.Write("Azimuth:       {0} degrees\n", data.Output.Azimuth);
-		Console.Write("Incidence:     {0} degrees\n", data.Output.Incidence);
+			// Check for SPA errors
+			if (result == 0)
+			{
+				Console.Write("Julian Day:    {0}\n", data.MidOut.JulianTime.JDay);
+				Console.Write("HeliocentericLongitude:             {0} degrees\n", data.MidOut.EarthMidOut.HeliocentericLongitude);
+				Console.Write("HeliocentericLatitude:             {0} degrees\n", data.MidOut.EarthMidOut.HeliocentericLatitude);
+				Console.Write("RadiusVector:             {0} AU\n", data.MidOut.EarthMidOut.RadiusVector);
+				Console.Write("H:             {0} degrees\n", data.MidOut.H);
+				Console.Write("Delta Psi:     {0} degrees\n", data.MidOut.DelPsi);
+				Console.Write("Delta Epsilon: {0} degrees\n", data.MidOut.DelEpsilon);
+				Console.Write("Epsilon:       {0} degrees\n", data.MidOut.Epsilon);
+				Console.Write("Zenith:        {0} degrees\n", data.Output.Zenith);
+				Console.Write("Azimuth:       {0} degrees\n", data.Output.Azimuth);
+				Console.Write("Incidence:     {0} degrees\n", data.Output.Incidence);
 
-                var min = 60.0 * (spa.Sunrise - (int)(spa.Sunrise));
-		var min = 60.0 * (data.Output.Sunrise - (int)data.Output.Sunrise);
-		var sec = 60.0 * (min - (int)min);
-                Console.Write("Sunrise:       {0}:{1}:{2} Local Time\n", (int)(spa.Sunrise), (int)min, (int)sec);
-		Console.Write("Sunrise:       {0}:{1}:{2} Local Time\n", (int)data.Output.Sunrise, (int)min, (int)sec);
+				var min = 60.0 * (data.Output.Sunrise - (int)data.Output.Sunrise);
+				var sec = 60.0 * (min - (int)min);
+				Console.Write("Sunrise:       {0}:{1}:{2} Local Time\n", (int)data.Output.Sunrise, (int)min, (int)sec);
 
-                min = 60.0 * (spa.Sunset - (int)(spa.Sunset));
-		min = 60.0 * (data.Output.Sunset - (int)data.Output.Sunset);
-		sec = 60.0 * (min - (int)min);
-                Console.Write("Sunset:        {0}:{1}:{2} Local Time\n", (int)(spa.Sunset), (int)min, (int)sec);
+				min = 60.0 * (data.Output.Sunset - (int)data.Output.Sunset);
+				sec = 60.0 * (min - (int)min);
+				Console.Write("Sunset:        {0}:{1}:{2} Local Time\n", (int)data.Output.Sunset, (int)min, (int)sec);
+			}
+			else
+			{
+				Console.WriteLine("SPA Error Code: {0}", result);
+			}
 
-		Console.Write("Sunset:        {0}:{1}:{2} Local Time\n", (int)data.Output.Sunset, (int)min, (int)sec);
+			Console.ReadKey();
+		}
 	}
-	else
-	{
-		Console.WriteLine("SPA Error Code: {0}", result);
-	}
-            else Console.WriteLine("SPA Error Code: {0}", result);
-
-	Console.ReadKey();
-}
-    }
 }
 ```
 This code should output the following result:
@@ -143,7 +112,7 @@ Sunrise:       6:12:43 Local Time
 Sunset:        17:20:19 Local Time
 ```
 
-But due to bugs appeared in refactoring (99.9% because of breaking data struct to some happy classes!) it's output is:
+But due to bugs appeared in refactoring (99.9% because of breaking data struct to some happy classes!) it's output is (+3:30GMT):
 ```
 Julian Day:    2452931.5
 HeliocentericLongitude:             24.203218344625306 degrees
