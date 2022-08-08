@@ -1,3 +1,5 @@
+using System;
+
 namespace SPACalculator.Calculators;
 
 public static class GeocentricCalc

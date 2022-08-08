@@ -1,3 +1,4 @@
+using System;
 using SPACalculator.Enums;
 
 namespace SPACalculator.Calculators;
